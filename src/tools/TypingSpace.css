@@ -1,0 +1,72 @@
+.typing-space {
+  width: min(520px, 92vw);
+  padding: 32px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.typing-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-height: 64px;
+  animation: word-fade-in 1.2s ease;
+}
+
+.typing-prompt .prompt-en {
+  font-size: clamp(28px, 5vw, 38px);
+  letter-spacing: 0.06em;
+  color: var(--accent-strong);
+  font-weight: 400;
+}
+
+.typing-prompt .prompt-zh {
+  font-size: 14px;
+  color: var(--text-faint);
+  letter-spacing: 0.1em;
+}
+
+.typing-area {
+  width: 100%;
+  min-height: 140px;
+  resize: none;
+  padding: 16px 18px;
+  border-radius: 14px;
+  border: 1px solid var(--panel-border);
+  background: rgba(4, 20, 28, 0.35);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.7;
+  font-family: var(--sans);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.typing-area:focus {
+  border-color: rgba(127, 230, 220, 0.5);
+}
+
+.typing-area::placeholder {
+  color: var(--text-faint);
+}
+
+.typing-hint {
+  font-size: 12.5px;
+  color: var(--text-faint);
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+@keyframes word-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
