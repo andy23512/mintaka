@@ -1,32 +1,37 @@
-# React + TypeScript + Vite
+# Mintaka
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A calming web app built around a stylized 3D "crystal ocean" scene, with two small relaxation tools layered on top: a slow-typing space and a 5-3-8 breath guide, plus a procedural + recorded ocean ambience track.
 
-Currently, two official plugins are available:
+**[Live demo →](https://andy23512.github.io/mintaka/)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Custom-shader ocean with Gerstner waves, Fresnel reflectance, and depth-based transparency down to a sandy seafloor
+- Interactive water ripples that follow the cursor, with a matching soft splash sound
+- Ambient sea-wave + seagull audio (CC0), with a mute toggle and volume control
+- **Slow Typing Space** — a distraction-free typing exercise
+- **5-3-8 Breath Guide** — a paced breathing exercise (5s inhale · 3s hold · 8s exhale)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech stack
 
-## Expanding the Oxlint configuration
+- React 19 + TypeScript, built with Vite
+- 3D: [three.js](https://threejs.org/), [`@react-three/fiber`](https://github.com/pmndrs/react-three-fiber), [`@react-three/drei`](https://github.com/pmndrs/drei)
+- State: [zustand](https://github.com/pmndrs/zustand)
+- Linting: [oxlint](https://oxc.rs/)
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## Development
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Other scripts:
+
+```bash
+npm run build    # type-check and build for production
+npm run preview  # preview the production build locally
+npm run lint      # run oxlint
+```
+
+The app is deployed to GitHub Pages under the `/mintaka/` subpath on every push to `main` (see `.github/workflows/`).

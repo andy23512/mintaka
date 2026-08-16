@@ -2,6 +2,7 @@ import { useMemo, useRef } from 'react'
 import { useFrame, type ThreeEvent } from '@react-three/fiber'
 import * as THREE from 'three'
 import { oceanAmbience } from '../audio/oceanAmbience'
+import { SEA_FLOOR_DEPTH } from './floorShaders'
 import { MAX_RIPPLES, oceanFragmentShader, oceanVertexShader } from './oceanShaders'
 
 const RIPPLE_MIN_INTERVAL = 0.045
@@ -12,6 +13,7 @@ function createOceanMaterial() {
     vertexShader: oceanVertexShader,
     fragmentShader: oceanFragmentShader,
     transparent: true,
+    depthWrite: false,
     uniforms: {
       uTime: { value: 0 },
       uRipplePos: {
@@ -22,7 +24,11 @@ function createOceanMaterial() {
       uSunDir: { value: new THREE.Vector3(0.35, 0.55, 0.2).normalize() },
       uColorShallow: { value: new THREE.Color('#d8fbf5') },
       uColorDeep: { value: new THREE.Color('#0c5e78') },
+      uSkyZenith: { value: new THREE.Color('#3fa9c9') },
+      uSkyHorizon: { value: new THREE.Color('#eafffb') },
       uOpacity: { value: 0.94 },
+      uFloorDepth: { value: SEA_FLOOR_DEPTH },
+      uExtinction: { value: 0.15 },
     },
   })
 }

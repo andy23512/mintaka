@@ -23,12 +23,6 @@
   font-weight: 400;
 }
 
-.typing-prompt .prompt-zh {
-  font-size: 14px;
-  color: var(--text-faint);
-  letter-spacing: 0.1em;
-}
-
 .typing-area {
   width: 100%;
   min-height: 140px;

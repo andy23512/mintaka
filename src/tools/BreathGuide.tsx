@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 import './BreathGuide.css'
 
 const PHASES = [
-  { key: 'inhale', label: '吸氣', seconds: 5 },
-  { key: 'hold', label: '屏息', seconds: 3 },
-  { key: 'exhale', label: '呼氣', seconds: 8 },
+  { key: 'inhale', label: 'Inhale', seconds: 5 },
+  { key: 'hold', label: 'Hold', seconds: 3 },
+  { key: 'exhale', label: 'Exhale', seconds: 8 },
 ] as const
 
 const CYCLE_SECONDS = PHASES.reduce((sum, p) => sum + p.seconds, 0)
@@ -27,7 +27,7 @@ function scaleForPhase(phaseKey: string, progress: number) {
 
 export function BreathGuide() {
   const [running, setRunning] = useState(true)
-  const [display, setDisplay] = useState({ label: '吸氣', secondsLeft: 5, cycles: 0 })
+  const [display, setDisplay] = useState({ label: 'Inhale', secondsLeft: 5, cycles: 0 })
   const circleRef = useRef<HTMLDivElement>(null)
   const startRef = useRef(performance.now())
   const pausedElapsedRef = useRef(0)
@@ -79,13 +79,13 @@ export function BreathGuide() {
           <span className="breath-count">{display.secondsLeft}</span>
         </div>
       </div>
-      <p className="breath-pattern">5 秒吸氣 · 3 秒屏息 · 8 秒呼氣</p>
+      <p className="breath-pattern">5s inhale · 3s hold · 8s exhale</p>
       <div className="breath-controls">
         <button type="button" className="breath-toggle" onClick={() => setRunning((r) => !r)}>
-          {running ? '暫停' : '繼續'}
+          {running ? 'Pause' : 'Resume'}
         </button>
         {display.cycles > 0 && (
-          <span className="breath-cycles">已完成 {display.cycles} 次循環</span>
+          <span className="breath-cycles">{display.cycles} cycles completed</span>
         )}
       </div>
     </div>

@@ -3,6 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { Sparkles } from '@react-three/drei'
 import * as THREE from 'three'
 import { Ocean } from './Ocean'
+import { SeaFloor } from './SeaFloor'
 
 function CameraRig() {
   const t0 = useRef(Math.random() * 100)
@@ -33,6 +34,8 @@ export function OceanScene() {
       <Suspense fallback={null}>
         <ambientLight intensity={0.55} color="#bdf6ee" />
         <hemisphereLight args={['#bdf6ee', '#062c40', 0.6]} />
+        <directionalLight position={[3.5, 5.5, 2]} intensity={1.1} color="#eafffb" />
+        <SeaFloor segments={isLowPowerDevice ? 24 : 48} />
         <Ocean segments={isLowPowerDevice ? 90 : 180} />
         <Sparkles
           count={isLowPowerDevice ? 30 : 60}

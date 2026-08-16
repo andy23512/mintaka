@@ -1,6 +1,7 @@
 import { OceanScene } from './scene/OceanScene'
 import { TypingSpace } from './tools/TypingSpace'
 import { BreathGuide } from './tools/BreathGuide'
+import { ChordGarden } from './tools/ChordGarden'
 import { useUIStore } from './store/useUIStore'
 import { useOceanAmbience } from './audio/useOceanAmbience'
 import './App.css'
@@ -12,8 +13,10 @@ function App() {
   const setActiveTool = useUIStore((s) => s.setActiveTool)
   const audioStarted = useUIStore((s) => s.audioStarted)
   const audioMuted = useUIStore((s) => s.audioMuted)
+  const volume = useUIStore((s) => s.volume)
   const startAudio = useUIStore((s) => s.startAudio)
   const toggleMute = useUIStore((s) => s.toggleMute)
+  const setVolume = useUIStore((s) => s.setVolume)
 
   return (
     <div className="app-root">
@@ -25,18 +28,30 @@ function App() {
         <div className="overlay-top">
           <div className="title-block">
             <div className="title">MINTAKA</div>
-            <div className="subtitle">参宿三 · 清澈水晶海洋</div>
+            <div className="subtitle">Clear Crystal Ocean</div>
           </div>
           <div className="top-controls">
             {audioStarted && (
-              <button
-                type="button"
-                className="icon-button"
-                onClick={toggleMute}
-                aria-label={audioMuted ? '取消靜音' : '靜音'}
-              >
-                {audioMuted ? '🔇' : '🔊'}
-              </button>
+              <div className="volume-control glass-panel">
+                <button
+                  type="button"
+                  className="icon-button icon-button--plain"
+                  onClick={toggleMute}
+                  aria-label={audioMuted ? 'Unmute' : 'Mute'}
+                >
+                  {audioMuted ? '🔇' : '🔊'}
+                </button>
+                <input
+                  type="range"
+                  className="volume-slider"
+                  min={0}
+                  max={1}
+                  step={0.01}
+                  value={volume}
+                  onChange={(e) => setVolume(Number(e.target.value))}
+                  aria-label="Volume"
+                />
+              </div>
             )}
           </div>
         </div>
@@ -44,6 +59,7 @@ function App() {
         <div className="tool-stage">
           {activeTool === 'typing' && <TypingSpace />}
           {activeTool === 'breath' && <BreathGuide />}
+          {activeTool === 'chord' && <ChordGarden />}
         </div>
 
         <div className="overlay-bottom">
@@ -53,14 +69,21 @@ function App() {
               className={`dock-button ${activeTool === 'typing' ? 'active' : ''}`}
               onClick={() => setActiveTool('typing')}
             >
-              <span className="label-full">慢速打字空間</span>
+              <span className="label-full">Slow Typing Space</span>
             </button>
             <button
               type="button"
               className={`dock-button ${activeTool === 'breath' ? 'active' : ''}`}
               onClick={() => setActiveTool('breath')}
             >
-              <span className="label-full">5-3-8 呼吸引導</span>
+              <span className="label-full">5-3-8 Breath Guide</span>
+            </button>
+            <button
+              type="button"
+              className={`dock-button ${activeTool === 'chord' ? 'active' : ''}`}
+              onClick={() => setActiveTool('chord')}
+            >
+              <span className="label-full">Chord Garden</span>
             </button>
           </nav>
         </div>
@@ -69,10 +92,13 @@ function App() {
       {!audioStarted && (
         <div className="audio-hint">
           <div className="audio-hint-card glass-panel">
-            <div className="title">歡迎來到 Mintaka</div>
-            <p>點擊開啟海洋環境音,並在畫面上移動滑鼠感受漣漪。也可以先靜音瀏覽。</p>
+            <div className="title">Welcome to Mintaka</div>
+            <p>
+              Click to start the ocean ambience, and move your mouse across the water to feel
+              the ripples. You can also browse muted.
+            </p>
             <button type="button" onClick={startAudio}>
-              進入海洋
+              Enter the Ocean
             </button>
           </div>
         </div>
