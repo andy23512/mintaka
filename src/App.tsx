@@ -31,6 +31,14 @@ function App() {
             <div className="subtitle">Clear Crystal Ocean</div>
           </div>
           <div className="top-controls">
+            <a
+              className="source-link glass-panel"
+              href="https://github.com/andy23512/mintaka"
+              target="_blank"
+              rel="noopener"
+            >
+              Source on GitHub
+            </a>
             {audioStarted && (
               <div className="volume-control glass-panel">
                 <button
