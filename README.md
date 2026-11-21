@@ -1,5 +1,7 @@
 # Mintaka
 
+[![CI](https://github.com/andy23512/mintaka/actions/workflows/ci.yml/badge.svg)](https://github.com/andy23512/mintaka/actions/workflows/ci.yml)
+
 A calming web app built around a stylized 3D "crystal ocean" scene, with two small relaxation tools layered on top: a slow-typing space and a 5-3-8 breath guide, plus a procedural + recorded ocean ambience track.
 
 **[Live demo →](https://andy23512.github.io/mintaka/)**
