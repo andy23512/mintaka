@@ -13,9 +13,12 @@ export const CHORDS = [
   ['h', 't', 's'],
 ]
 
+const sameChord = (a: string[], b: string[]) => a.length === b.length && a.every((key, i) => key === b[i])
+
 export function pickChord(exclude?: string[]) {
   let chord = CHORDS[Math.floor(Math.random() * CHORDS.length)]
-  while (exclude && chord === exclude) {
+  // Compared by keys, not by reference, so a copy of the previous chord is avoided too.
+  while (exclude && sameChord(chord, exclude)) {
     chord = CHORDS[Math.floor(Math.random() * CHORDS.length)]
   }
   return chord

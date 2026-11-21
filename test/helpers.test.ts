@@ -89,6 +89,16 @@ describe('pickChord', () => {
     expect(pickChord(CHORDS[0])).toBe(CHORDS[CHORDS.length - 1])
   })
 
+  it('avoids a copy of the excluded chord, not just the same array', () => {
+    randomSequence(0, 0.99)
+    expect(pickChord([...CHORDS[0]])).toBe(CHORDS[CHORDS.length - 1])
+  })
+
+  it('does not treat a different chord as the excluded one', () => {
+    randomSequence(0, 0.99)
+    expect(pickChord(CHORDS[1])).toBe(CHORDS[0])
+  })
+
   it('may repeat a chord when none is excluded', () => {
     randomSequence(0, 0)
     expect(pickChord()).toBe(CHORDS[0])

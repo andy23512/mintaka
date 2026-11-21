@@ -25,9 +25,9 @@ There is no test script/framework configured in this repo.
 
 - `src/App.tsx` — top-level layout: ocean canvas, overlay UI, tool dock, audio-start hint
 - `src/scene/` — `OceanScene.tsx` (R3F Canvas setup) and `Ocean.tsx` (mesh/geometry), `oceanShaders.ts` (GLSL for the water surface)
-- `src/tools/` — `TypingSpace.tsx` (slow typing exercise, uses `typingWords.ts`) and `BreathGuide.tsx` (5-3-8 breathing pacer)
+- `src/tools/` — `TypingSpace.tsx` (slow typing exercise, uses `typingWords.ts`), `BreathGuide.tsx` (5-3-8 breathing pacer, uses `breath.ts`) and `ChordGarden.tsx` (chord practice, uses `chords.ts`)
 - `src/audio/` — `oceanAmbience.ts` (Web Audio procedural ambience generator) and `useOceanAmbience.ts` (hook wiring it to UI state)
-- `src/store/useUIStore.ts` — single zustand store: active tool (`none | typing | breath`), audio started/muted state
+- `src/store/useUIStore.ts` — single zustand store: active tool (`none | typing | breath | chord`), audio started/muted state
 
 ## Notable/non-obvious points
 
