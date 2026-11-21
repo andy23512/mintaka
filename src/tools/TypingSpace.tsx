@@ -1,18 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
-import { OCEAN_WORDS } from './typingWords'
+import { pickWord } from './typingWords'
 import './TypingSpace.css'
 
 const WORD_INTERVAL_MS = 20000
-
-function pickWord(exclude?: string): string {
-  let word = OCEAN_WORDS[Math.floor(Math.random() * OCEAN_WORDS.length)]
-  if (exclude && OCEAN_WORDS.length > 1) {
-    while (word === exclude) {
-      word = OCEAN_WORDS[Math.floor(Math.random() * OCEAN_WORDS.length)]
-    }
-  }
-  return word
-}
 
 export function TypingSpace() {
   const [word, setWord] = useState<string>(() => pickWord())

@@ -46,3 +46,13 @@ export const OCEAN_WORDS: string[] = [
   'luminous',
   'cove',
 ]
+
+export function pickWord(exclude?: string): string {
+  let word = OCEAN_WORDS[Math.floor(Math.random() * OCEAN_WORDS.length)]
+  if (exclude && OCEAN_WORDS.length > 1) {
+    while (word === exclude) {
+      word = OCEAN_WORDS[Math.floor(Math.random() * OCEAN_WORDS.length)]
+    }
+  }
+  return word
+}
